@@ -1,0 +1,239 @@
+import tkinter as tk
+import random as r
+
+def A():
+    labelD=tk.Label(frame,text="あなたが飼っている動物はなんですか")
+    labelD.pack(fill="x")
+    
+    clicE=tk.Button(frame,text=("ねこ"))
+    clicE["command"]=D_neko
+    clicE.pack(fill="x")
+
+    clicF=tk.Button(frame,text=("いぬ"))
+    clicF["command"]=D_inu
+    clicF.pack(fill="x")
+
+def B():
+    labelD=tk.Label(frame,text="あなたが飼っている動物はなんですか")
+    labelD.pack()
+    
+    clicE=tk.Button(frame,text=("ねこ"))
+    clicE["command"]=D_neko
+    clicE.pack(fill="x")
+
+    clicF=tk.Button(frame,text=("いぬ"))
+    clicF["command"]=D_inu
+    clicF.pack(fill="x")
+
+def C():
+    labelD=tk.Label(frame,text="あなたが飼っている動物はなんですか")
+    labelD.pack(fill="x")
+    
+    clicE=tk.Button(frame,text=("ねこ"))
+    clicE["command"]=D_neko
+    clicE.pack(fill="x")
+
+    clicF=tk.Button(frame,text=("いぬ"))
+    clicF["command"]=D_inu
+    clicF.pack(fill="x")
+
+def D_neko1(user,quiz_listA,kaisu,true):
+    kaisuA=kaisu
+    def D_neko1_1():
+        nonlocal kaisuA
+        trueA=true
+        #8問出すまで続ける
+        if kaisuA<7:
+            quizA=quiz_listA[kaisuA]
+            ans=quizA[5]
+            #答え合わせ
+            if user==ans:
+                trueA=trueA+1
+                label=tk.Label(frame,text="正解！\n"+quizA[6])
+                label.pack()
+                
+            else:
+                label=tk.Label(frame,text="不正解...正解は"+quizA[ans]+"\n"+quizA[6])
+                label.pack()
+                
+
+            #問題を出す
+            kaisuA+=1
+            quizA=quiz_listA[kaisuA]
+            label=tk.Label(frame,text="[問題"+str(kaisuA+1)+"]\n"+quizA[0])
+            label.pack()
+
+            for b in range(4):#選択肢を４回だす
+                b+=1
+                clic=tk.Button(frame,text=str(b)+":"+quizA[b])
+                clic["command"]=D_neko1(b,quiz_listA,kaisuA,trueA,)
+                clic.pack(fill="x")
+
+        else:
+            quizA=quiz_listA[kaisuA]
+            ans=quizA[5]
+            if user==ans:
+                trueA=trueA+1
+                label=tk.Label(frame,text="正解！\n"+quizA[6])
+                label.pack()
+                
+            else:
+                label=tk.Label(frame,text="不正解...正解は"+quizA[ans]+"\n"+quizA[6])
+                label.pack()
+            
+            label=tk.Label(frame,text="あなたの成績は...8問中"+str(trueA)+"問正解です。")
+            label.pack()
+            clic=tk.Button(frame,text="終了する",command=A)
+            clic.pack(fill="x")
+
+    return D_neko1_1
+
+def D_neko():
+    quiz_list=[
+        ["三種混合ワクチンを打つ時期はいつでしょう","生後　ヶ月","　ヶ月","　ヶ月","生後　ヶ月",2,"説明"],
+        ["---","--","--","--","--",4,"説明"],
+        ["---","--","--","--","--",1,"説明"],
+        ["---","--","--","--","--",3,"説明"],
+        ["---","--","--","--","--",2,"説明"],
+        ["---","--","--","--","--",1,"説明"],
+        ["---","--","--","--","--",4,"説明"],
+        ["---","--","--","--","--",3,"説明"],
+        ["---","--","--","--","--",2,"説明"],
+        ]
+    
+    a=0
+    r.shuffle(quiz_list)
+
+    #問題のタイトルの表示
+    true=0
+    quiz=quiz_list[0]
+    label=tk.Label(frame,text="[問題"+str(a+1)+"]\n"+quiz[0])
+    label.pack()
+        
+    for b in range(4):#解答を４回だす
+        b+=1
+        clic=tk.Button(frame,text=str(b)+":"+quiz[b])
+        clic["command"]=D_neko1(b,quiz_list,a,true)
+        clic.pack(fill="x")
+
+def D_inu1(user,quiz_listA,kaisu,true):
+    kaisuA=kaisu
+    def D_inu1_1():
+        nonlocal kaisuA
+        trueA=true
+        if kaisuA<7:
+            quizA=quiz_listA[kaisuA]
+            ans=quizA[5]
+            if user==ans:
+                trueA=trueA+1
+                label=tk.Label(frame,text="正解！\n"+quizA[6])
+                label.pack()
+                
+            else:
+                label=tk.Label(frame,text="不正解...正解は"+quizA[ans]+"\n"+quizA[6])
+                label.pack()
+                
+
+            #問題を出す
+            kaisuA+=1
+            quizA=quiz_listA[kaisuA]
+            label=tk.Label(frame,text="[問題"+str(kaisuA+1)+"]\n"+quizA[0])
+            label.pack()
+
+            for b in range(4):#選択肢を４回だす
+                b+=1
+                clic=tk.Button(frame,text=str(b)+":"+quizA[b])
+                clic["command"]=D_inu1(b,quiz_listA,kaisuA,trueA,)
+                clic.pack(fill="x")
+
+        else:
+            quizA=quiz_listA[kaisuA]
+            ans=quizA[5]
+            if user==ans:
+                trueA=trueA+1
+                label=tk.Label(frame,text="正解！\n"+quizA[6])
+                label.pack()
+                
+            else:
+                label=tk.Label(frame,text="不正解...正解は"+quizA[ans]+"\n"+quizA[6])
+                label.pack()
+            
+            label=tk.Label(frame,text="あなたの成績は...8問中"+str(trueA)+"問正解です。")
+            label.pack()
+            clic=tk.Button(frame,text="終了する",command=A)
+            clic.pack(fill="x")
+
+    return D_inu1_1
+
+def D_inu():
+    quiz_list=[
+        ["三種混合ワクチンを打つ時期はいつでしょう","生後　ヶ月","　ヶ月","　ヶ月","生後　ヶ月",2,"説明"],
+        ["---","--","--","--","--",4,"説明"],
+        ["---","--","--","--","--",1,"説明"],
+        ["---","--","--","--","--",3,"説明"],
+        ["---","--","--","--","--",2,"説明"],
+        ["---","--","--","--","--",1,"説明"],
+        ["---","--","--","--","--",4,"説明"],
+        ["---","--","--","--","--",3,"説明"],
+        ["---","--","--","--","--",2,"説明"],
+        ]
+    
+    a=0
+    r.shuffle(quiz_list)
+    
+    #問題のタイトルの表示
+    true=0
+    quiz=quiz_list[0]
+    label=tk.Label(frame,text="[問題"+str(a+1)+"]\n"+quiz[0])
+    label.pack()
+        
+    for b in range(4):#解答を４回だす
+        b+=1
+        clic=tk.Button(frame,text=str(b)+":"+quiz[b])
+        clic["command"]=D_inu1(b,quiz_list,a,true)
+        clic.pack(fill="x")
+
+def start():
+    label=tk.Label(frame,text="あなたが知りたいことはなんですか？")
+    label.pack()
+
+    clicA=tk.Button(frame,text=("予防について"))
+    clicA["command"]=A
+    clicA.pack(fill="x")
+
+    clicB=tk.Button(frame,text=("食事について"))
+    clicB["command"]=B
+    clicB.pack(fill="x")
+
+    clicC=tk.Button(frame,text=("老後の痛みチェック"))
+    clicC["command"]=C
+    clicC.pack(fill="x")
+
+#ウィンドウを作成
+win=tk.Tk()
+win.title("犬猫の豊かな暮らし")
+win.geometry("300x1000")
+
+#スタートボタンの作成
+clic=tk.Button(win,text="Game Start",command=start)
+clic.pack(fill="x")
+
+#キャンパスの作成
+canvas=tk.Canvas(win)
+canvas.pack()
+
+#スクロールバーの表示
+Scl=tk.Scrollbar(win)
+Scl.pack(side=tk.RIGHT,fill="y")
+Scl.config(command=canvas.yview)
+
+#キャンパスwidgetの配置
+canvas.config(yscrollcommand=Scl.set)
+canvas.config(scrollregion=(0,0,200,1700))
+canvas.pack(side=tk.LEFT,fill=tk.BOTH)
+
+#フレームの生成
+frame=tk.Frame(canvas)
+
+#フレームをキャンバスに配置
+canvas.create_window((0,0),window=frame,anchor=tk.NW,width=canvas.cget("width"))
