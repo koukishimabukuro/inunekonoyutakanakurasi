@@ -18,11 +18,11 @@ def B():
     labelD.pack()
     
     clicE=tk.Button(frame,text=("ねこ"))
-    clicE["command"]=D_neko
+    clicE["command"]=E_neko
     clicE.pack(fill="x")
 
     clicF=tk.Button(frame,text=("いぬ"))
-    clicF["command"]=D_inu
+    clicF["command"]=E_inu
     clicF.pack(fill="x")
 
 def C():
@@ -30,11 +30,11 @@ def C():
     labelD.pack(fill="x")
     
     clicE=tk.Button(frame,text=("ねこ"))
-    clicE["command"]=D_neko
+    clicE["command"]=F_neko
     clicE.pack(fill="x")
 
     clicF=tk.Button(frame,text=("いぬ"))
-    clicF["command"]=D_inu
+    clicF["command"]=F_inu
     clicF.pack(fill="x")
 
 def D_neko1(user,quiz_listA,kaisu,true):
@@ -192,6 +192,323 @@ def D_inu():
         clic=tk.Button(frame,text=str(b)+":"+quiz[b])
         clic["command"]=D_inu1(b,quiz_list,a,true)
         clic.pack(fill="x")
+        
+def E_neko1(user,quiz_listA,kaisu,true):
+    kaisuA=kaisu
+    def E_neko1_1():
+        nonlocal kaisuA
+        trueA=true
+        #8問出すまで続ける
+        if kaisuA<7:
+            quizA=quiz_listA[kaisuA]
+            ans=quizA[5]
+            #答え合わせ
+            if user==ans:
+                trueA=trueA+1
+                label=tk.Label(frame,text="正解！\n"+quizA[6])
+                label.pack()
+                
+            else:
+                label=tk.Label(frame,text="不正解...正解は"+quizA[ans]+"\n"+quizA[6])
+                label.pack()
+                
+
+            #問題を出す
+            kaisuA+=1
+            quizA=quiz_listA[kaisuA]
+            label=tk.Label(frame,text="[問題"+str(kaisuA+1)+"]\n"+quizA[0])
+            label.pack()
+
+            for b in range(4):#選択肢を４回だす
+                b+=1
+                clic=tk.Button(frame,text=str(b)+":"+quizA[b])
+                clic["command"]=D_neko1(b,quiz_listA,kaisuA,trueA,)
+                clic.pack(fill="x")
+
+        else:
+            quizA=quiz_listA[kaisuA]
+            ans=quizA[5]
+            if user==ans:
+                trueA=trueA+1
+                label=tk.Label(frame,text="正解！\n"+quizA[6])
+                label.pack()
+                
+            else:
+                label=tk.Label(frame,text="不正解...正解は"+quizA[ans]+"\n"+quizA[6])
+                label.pack()
+            
+            label=tk.Label(frame,text="あなたの成績は...8問中"+str(trueA)+"問正解です。")
+            label.pack()
+            clic=tk.Button(frame,text="終了する",command=A)
+            clic.pack(fill="x")
+
+    return E_neko1_1
+
+def E_neko():
+    quiz_list=[
+        ["食べさせてはいけない食べ物は次のうちどれでしょう","生後　ヶ月","　ヶ月","　ヶ月","生後　ヶ月",2,"説明"],
+        ["食べさせてはいけない食べ物は次のうちどれでしょう","--","--","--","--",4,"説明"],
+        ["食べさせてはいけない食べ物は次のうちどれでしょう","--","--","--","--",1,"説明"],
+        ["食べさせてはいけない食べ物は次のうちどれでしょう","--","--","--","--",3,"説明"],
+        ["食べさせてはいけない食べ物は次のうちどれでしょう","--","--","--","--",2,"説明"],
+        ["猫があまり感じにくいと言われている味覚は次のうちどれでしょう","--","--","--","--",1,"説明"],
+        ["---","--","--","--","--",4,"説明"],
+        ["---","--","--","--","--",3,"説明"],
+        ["---","--","--","--","--",2,"説明"],
+        ]
+    
+    a=0
+    r.shuffle(quiz_list)
+
+    #問題のタイトルの表示
+    true=0
+    quiz=quiz_list[0]
+    label=tk.Label(frame,text="[問題"+str(a+1)+"]\n"+quiz[0])
+    label.pack()
+        
+    for b in range(4):#解答を４回だす
+        b+=1
+        clic=tk.Button(frame,text=str(b)+":"+quiz[b])
+        clic["command"]=E_neko1(b,quiz_list,a,true)
+        clic.pack(fill="x")
+
+def E_inu1(user,quiz_listA,kaisu,true):
+    kaisuA=kaisu
+    def D_neko1_1():
+        nonlocal kaisuA
+        trueA=true
+        #8問出すまで続ける
+        if kaisuA<7:
+            quizA=quiz_listA[kaisuA]
+            ans=quizA[5]
+            #答え合わせ
+            if user==ans:
+                trueA=trueA+1
+                label=tk.Label(frame,text="正解！\n"+quizA[6])
+                label.pack()
+                
+            else:
+                label=tk.Label(frame,text="不正解...正解は"+quizA[ans]+"\n"+quizA[6])
+                label.pack()
+                
+
+            #問題を出す
+            kaisuA+=1
+            quizA=quiz_listA[kaisuA]
+            label=tk.Label(frame,text="[問題"+str(kaisuA+1)+"]\n"+quizA[0])
+            label.pack()
+
+            for b in range(4):#選択肢を４回だす
+                b+=1
+                clic=tk.Button(frame,text=str(b)+":"+quizA[b])
+                clic["command"]=E_inu1(b,quiz_listA,kaisuA,trueA,)
+                clic.pack(fill="x")
+
+        else:
+            quizA=quiz_listA[kaisuA]
+            ans=quizA[5]
+            if user==ans:
+                trueA=trueA+1
+                label=tk.Label(frame,text="正解！\n"+quizA[6])
+                label.pack()
+                
+            else:
+                label=tk.Label(frame,text="不正解...正解は"+quizA[ans]+"\n"+quizA[6])
+                label.pack()
+            
+            label=tk.Label(frame,text="あなたの成績は...8問中"+str(trueA)+"問正解です。")
+            label.pack()
+            clic=tk.Button(frame,text="終了する",command=A)
+            clic.pack(fill="x")
+
+    return E_inu1_1
+
+def E_inu():
+    quiz_list=[
+        ["食べさせてはいけない食べ物は次のうちどれでしょう","生後　ヶ月","　ヶ月","　ヶ月","生後　ヶ月",2,"説明"],
+        ["食べさせてはいけない食べ物は次のうちどれでしょう","--","--","--","--",4,"説明"],
+        ["食べさせてはいけない食べ物は次のうちどれでしょう","--","--","--","--",1,"説明"],
+        ["食べさせてはいけない食べ物は次のうちどれでしょう","--","--","--","--",3,"説明"],
+        ["食べさせてはいけない食べ物は次のうちどれでしょう","--","--","--","--",2,"説明"],
+        ["犬が食べても感じにくいとされえている味覚は次のうちどれでしょう","--","--","--","--",1,"説明"],
+        ["---","--","--","--","--",4,"説明"],
+        ["---","--","--","--","--",3,"説明"],
+        ["---","--","--","--","--",2,"説明"],
+        ]
+    
+    a=0
+    r.shuffle(quiz_list)
+
+    #問題のタイトルの表示
+    true=0
+    quiz=quiz_list[0]
+    label=tk.Label(frame,text="[問題"+str(a+1)+"]\n"+quiz[0])
+    label.pack()
+        
+    for b in range(4):#解答を４回だす
+        b+=1
+        clic=tk.Button(frame,text=str(b)+":"+quiz[b])
+        clic["command"]=E_inu1(b,quiz_list,a,true)
+        clic.pack(fill="x")
+
+def F_neko1(user,quiz_listA,kaisu,true):
+    kaisuA=kaisu
+    def F_neko1_1():
+        nonlocal kaisuA
+        trueA=true
+        #8問出すまで続ける
+        if kaisuA<7:
+            quizA=quiz_listA[kaisuA]
+            ans=quizA[5]
+            #答え合わせ
+            if user==ans:
+                trueA=trueA+1
+                label=tk.Label(frame,text="正解！\n"+quizA[6])
+                label.pack()
+                
+            else:
+                label=tk.Label(frame,text="不正解...正解は"+quizA[ans]+"\n"+quizA[6])
+                label.pack()
+                
+
+            #問題を出す
+            kaisuA+=1
+            quizA=quiz_listA[kaisuA]
+            label=tk.Label(frame,text="[問題"+str(kaisuA+1)+"]\n"+quizA[0])
+            label.pack()
+
+            for b in range(4):#選択肢を４回だす
+                b+=1
+                clic=tk.Button(frame,text=str(b)+":"+quizA[b])
+                clic["command"]=F_neko1(b,quiz_listA,kaisuA,trueA,)
+                clic.pack(fill="x")
+
+        else:
+            quizA=quiz_listA[kaisuA]
+            ans=quizA[5]
+            if user==ans:
+                trueA=trueA+1
+                label=tk.Label(frame,text="正解！\n"+quizA[6])
+                label.pack()
+                
+            else:
+                label=tk.Label(frame,text="不正解...正解は"+quizA[ans]+"\n"+quizA[6])
+                label.pack()
+            
+            label=tk.Label(frame,text="あなたの成績は...8問中"+str(trueA)+"問正解です。")
+            label.pack()
+            clic=tk.Button(frame,text="終了する",command=A)
+            clic.pack(fill="x")
+
+    return F_neko1_1
+
+def F_neko():
+    quiz_list=[
+        ["老後","生後　ヶ月","　ヶ月","　ヶ月","生後　ヶ月",2,"説明"],
+        ["---","--","--","--","--",4,"説明"],
+        ["---","--","--","--","--",1,"説明"],
+        ["---","--","--","--","--",3,"説明"],
+        ["---","--","--","--","--",2,"説明"],
+        ["---","--","--","--","--",1,"説明"],
+        ["---","--","--","--","--",4,"説明"],
+        ["---","--","--","--","--",3,"説明"],
+        ["---","--","--","--","--",2,"説明"],
+        ]
+    
+    a=0
+    r.shuffle(quiz_list)
+
+    #問題のタイトルの表示
+    true=0
+    quiz=quiz_list[0]
+    label=tk.Label(frame,text="[問題"+str(a+1)+"]\n"+quiz[0])
+    label.pack()
+        
+    for b in range(4):#解答を４回だす
+        b+=1
+        clic=tk.Button(frame,text=str(b)+":"+quiz[b])
+        clic["command"]=F_neko1(b,quiz_list,a,true)
+        clic.pack(fill="x")
+
+def F_inu1(user,quiz_listA,kaisu,true):
+    kaisuA=kaisu
+    def F_inu1_1():
+        nonlocal kaisuA
+        trueA=true
+        #8問出すまで続ける
+        if kaisuA<7:
+            quizA=quiz_listA[kaisuA]
+            ans=quizA[5]
+            #答え合わせ
+            if user==ans:
+                trueA=trueA+1
+                label=tk.Label(frame,text="正解！\n"+quizA[6])
+                label.pack()
+                
+            else:
+                label=tk.Label(frame,text="不正解...正解は"+quizA[ans]+"\n"+quizA[6])
+                label.pack()
+                
+
+            #問題を出す
+            kaisuA+=1
+            quizA=quiz_listA[kaisuA]
+            label=tk.Label(frame,text="[問題"+str(kaisuA+1)+"]\n"+quizA[0])
+            label.pack()
+
+            for b in range(4):#選択肢を４回だす
+                b+=1
+                clic=tk.Button(frame,text=str(b)+":"+quizA[b])
+                clic["command"]=F_inu1(b,quiz_listA,kaisuA,trueA,)
+                clic.pack(fill="x")
+
+        else:
+            quizA=quiz_listA[kaisuA]
+            ans=quizA[5]
+            if user==ans:
+                trueA=trueA+1
+                label=tk.Label(frame,text="正解！\n"+quizA[6])
+                label.pack()
+                
+            else:
+                label=tk.Label(frame,text="不正解...正解は"+quizA[ans]+"\n"+quizA[6])
+                label.pack()
+            
+            label=tk.Label(frame,text="あなたの成績は...8問中"+str(trueA)+"問正解です。")
+            label.pack()
+            clic=tk.Button(frame,text="終了する",command=A)
+            clic.pack(fill="x")
+
+    return F_inu1_1
+
+def F_inu():
+    quiz_list=[
+        ["老後","生後　ヶ月","　ヶ月","　ヶ月","生後　ヶ月",2,"説明"],
+        ["---","--","--","--","--",4,"説明"],
+        ["---","--","--","--","--",1,"説明"],
+        ["---","--","--","--","--",3,"説明"],
+        ["---","--","--","--","--",2,"説明"],
+        ["---","--","--","--","--",1,"説明"],
+        ["---","--","--","--","--",4,"説明"],
+        ["---","--","--","--","--",3,"説明"],
+        ["---","--","--","--","--",2,"説明"],
+        ]
+    
+    a=0
+    r.shuffle(quiz_list)
+
+    #問題のタイトルの表示
+    true=0
+    quiz=quiz_list[0]
+    label=tk.Label(frame,text="[問題"+str(a+1)+"]\n"+quiz[0])
+    label.pack()
+        
+    for b in range(4):#解答を４回だす
+        b+=1
+        clic=tk.Button(frame,text=str(b)+":"+quiz[b])
+        clic["command"]=F_inu1(b,quiz_list,a,true)
+        clic.pack(fill="x")
+
 
 def start():
     label=tk.Label(frame,text="あなたが知りたいことはなんですか？")
