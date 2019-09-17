@@ -392,7 +392,7 @@ def F_neko1(user,quiz_listA,kaisu,true):
             label=tk.Label(frame,text="[問題"+str(kaisuA+1)+"]\n"+quizA[0])
             label.pack()
 
-            for b in range(2):#選択肢を４回だす
+            for b in range(2):#選択肢を2個だす
                 b+=1
                 clic=tk.Button(frame,text=str(b)+":"+quizA[b])
                 clic["command"]=F_neko1(b,quiz_listA,kaisuA,trueA,)
@@ -440,7 +440,7 @@ def F_neko():
     label=tk.Label(frame,text="[問題"+str(a+1)+"]\n"+quiz[0])
     label.pack()
         
-    for b in range(2):#はい,いいえを出す
+    for b in range(2):#選択肢を2個だす
         b+=1
         clic=tk.Button(frame,text=str(b)+":"+quiz[b])
         clic["command"]=F_neko1(b,quiz_list,a,true)
@@ -469,7 +469,7 @@ def F_inu1(user,quiz_listA,kaisu,true):
             label=tk.Label(frame,text="[問題"+str(kaisuA+1)+"]\n"+quizA[0])
             label.pack()
 
-            for b in range(2):#選択肢を４回だす
+            for b in range(2):#選択肢を2個だす
                 b+=1
                 clic=tk.Button(frame,text=str(b)+":"+quizA[b])
                 clic["command"]=F_inu1(b,quiz_listA,kaisuA,trueA,)
